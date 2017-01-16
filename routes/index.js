@@ -1,5 +1,5 @@
 var routes = {
-  topPage : require('./topPage')
+  topPage: require('./topPage')
 }
 
 module.exports = routes;

@@ -1,11 +1,55 @@
 header {
-  border-bottom : 1px solid rgba(255, 255, 255);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  min-width: 600px;
 }
 
 .headerLeft {
-  float : left;
+  float: left;
 }
 
 .headerRight {
-  float : right;
+  float: right;
+}
+
+.sign {
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: #FAFAFA;
+  outline: none;
+  margin-right: 10px;
+  margin-top: 25px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #3ADF00;
+  border-radius: 3px;
+}
+
+.sign:hover {
+  background-color: #31B404;
+}
+
+.sign:active {
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1) inset;
+}
+
+.modalWindow {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  position: absolute;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.description {
+}
+
+.input {
 }

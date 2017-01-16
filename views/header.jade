@@ -1,9 +1,23 @@
 header
   div.headerLeft
     h1 高槻さんかわいい
-  div.headerRight
-    unless login
-      button.signUp 新規登録
-      button.signIn ログイン
-    else
-      p a
+  unless login
+    div.headerRight
+        button.sign#up 新規登録
+        button.sign#in ログイン
+  else
+    p a
+
+unless login
+  div.modalWindow
+    form
+      div.description
+        p ユーザー名
+        p メールアドレス
+        p パスワード
+        p パスワード再入力
+      div.input
+        input(type="text")
+        input(type="text")
+        input(type="text")
+        input(type="text")
