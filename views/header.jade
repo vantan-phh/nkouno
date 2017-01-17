@@ -9,15 +9,13 @@ header
     p a
 
 unless login
+  div.modalBackground
   div.modalWindow
-    form
-      div.description
-        p ユーザー名
-        p メールアドレス
-        p パスワード
-        p パスワード再入力
-      div.input
-        input(type="text")
-        input(type="text")
-        input(type="text")
-        input(type="text")
+    div.head
+      h4.title
+      button.closeButton.close ✕
+    div.content
+    div.foot
+      button.CompleteButton.close 閉じる
+      form
+        button.CompleteButton.form
