@@ -10,22 +10,25 @@ window.onload = function() {
   var content = document.getElementsByClassName("content")[0];
 
   var close = document.getElementsByClassName("close");
+  var submit = document.getElementsByClassName("submit")[0];
   var form = document.getElementsByClassName("form")[0];
 
   var clickFlag = false;
 
   signUp.onclick = function() {
     title.innerText = "新規登録";
-    form.innerText = "登録";
-    content.innerHTML = "<div class='description'><p class='information'>ユーザー名</p><p class='information'>メールアドレス</p><p class='information'>パスワード</p><p class='information'>パスワード再入力</p></div><div class='inputs'><input type='text' class='input'><input type='text' class='input'><input type='text' class='input'><input type='text' class='input'></div>";
+    submit.innerText = "登録";
+    content.innerHTML = "<div class='description'><p class='information'>ユーザー名</p><p class='information'>メールアドレス</p><p class='information'>パスワード</p><p class='information'>パスワード再入力</p></div><div class='inputs'><input type='text' class='input' name='userName' required><input type='email' class='input' name='email' required><input type='password' class='input' name='password' required><input type='password' class='input' name='passAgain' required></div>";
     modalWindow.style.height = "380px";
+    form.action = "/signup";
     formOpen();
   }
   signIn.onclick = function() {
     title.innerText = "ログイン";
-    form.innerText = "ログイン";
-    content.innerHTML = "<div class='description'><p class='information'>メールアドレス</p><p class='information'>パスワード</p></div><div class='inputs'><input type='text' class='input'><input type='text' class='input'></div>"
+    submit.innerText = "ログイン";
+    content.innerHTML = "<div class='description'><p class='information'>メールアドレス</p><p class='information'>パスワード</p></div><div class='inputs'><input type='email' class='input' name='loginMail' required><input type='password' class='input' name='loginPass' required></div>"
     modalWindow.style.height = "290px";
+    form.action = "/signin";
     formOpen();
   }
 
@@ -45,7 +48,7 @@ window.onload = function() {
             modalWindow.style.display = "inline";
           }
         }else {
-          opacity += 0.02;
+          opacity += 0.05;
           modalWindow.style.opacity = opacity;
           if(opacity >= 1) {
             clearInterval(darken);
@@ -69,7 +72,7 @@ window.onload = function() {
           clearInterval(heighten);
         }
       }else {
-        opacity -= 0.02;
+        opacity -= 0.05;
         modalWindow.style.opacity = opacity;
         if(opacity <= 0.2) {
           backComplete = false;
@@ -78,5 +81,17 @@ window.onload = function() {
         }
       }
     }, 1)
+  }
+
+  form.onsubmit = function() {
+    form.passAgain.setCustomValidity("");
+    console.log(form.password.value);
+    console.log(form.passAgain.value);
+
+    if(form.password.value != form.passAgain.value) {
+      form.passAgain.setCustomValidity("パスワードが一致しません");
+      form.passAgain.setCustomValidity("");
+      return false;
+    }
   }
 }

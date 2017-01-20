@@ -1,3 +1,8 @@
 body {
   margin: 0;
 }
+
+.body {
+  background-color: #FAFAFA;
+  min-height: calc(100vh - 80px);
+}
