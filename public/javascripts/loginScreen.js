@@ -26,7 +26,7 @@ window.onload = function() {
   signIn.onclick = function() {
     title.innerText = "ログイン";
     submit.innerText = "ログイン";
-    content.innerHTML = "<div class='description'><p class='information'>メールアドレス</p><p class='information'>パスワード</p></div><div class='inputs'><input type='email' class='input' name='loginMail' required><input type='password' class='input' name='loginPass' required></div>"
+    content.innerHTML = "<div class='description'><p class='information'>メールアドレス</p><p class='information'>パスワード</p></div><div class='inputs'><input type='email' class='input' name='email' required><input type='password' class='input' name='password' required></div>"
     modalWindow.style.height = "290px";
     form.action = "/signin";
     formOpen();
@@ -83,14 +83,16 @@ window.onload = function() {
     }, 1)
   }
 
+  submit.onclick = function() {
+    if(form.password.value == form.passAgain.value) {
+      form.passAgain.setCustomValidity("");
+    }
+  }
+
   form.onsubmit = function() {
     form.passAgain.setCustomValidity("");
-    console.log(form.password.value);
-    console.log(form.passAgain.value);
-
     if(form.password.value != form.passAgain.value) {
       form.passAgain.setCustomValidity("パスワードが一致しません");
-      form.passAgain.setCustomValidity("");
       return false;
     }
   }

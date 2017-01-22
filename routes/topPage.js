@@ -6,14 +6,12 @@ var createSalt = require('../other/createSalt.js');
 var connection = require('../other/connectMysql.js');
 
 router.get('/', function(req, res) {
-  if(req.session.userId) {
-    //console.log(req.session.userId);
-  }else {
-    res.render('topPage');
-  }
+  console.log(req.session);
+  res.render('topPage');
 });
 
 router.post('/signup', function(req, res) {
+  if(req.session.userId) res.render('/', {err: "既にログイン済みです"});
   var data = req.body;
   var salt = createSalt();
   connection.query(
@@ -21,13 +19,10 @@ router.post('/signup', function(req, res) {
     [data.userName, data.email, salt, hashed(data.password, salt)],
     function(err, result) {
       if(err) {
-        if(err.match(/Duplicate/)) {
-          res.render('fail', {err: "既に登録済みです"});
-        }else {
-          res.render('fail', {err: "データベースエラー"});
-        }
+        var massage = "データベースエラー";
+        if(err.match(/Duplicate/)) massage = "既に登録済みです";
+        res.render('/', {err: massage});
       }
-      console.log(result);
       req.session.userId = result.insertId;
       res.redirect("/");
     }
@@ -35,17 +30,21 @@ router.post('/signup', function(req, res) {
 });
 
 router.post('/signin', function(req, res) {
-  var data = req.body;
-  "SELECT `id`, `salt`, `hash` FROM `users` WHERE `mail` = ?",
-  [data.email], function(err, result) {
-    if(err) res.render('fail', {err: "データベースエラー"});
-    if(result = []) res.render('fail', {err: "メールアドレスまたはパスワードが間違っています"});
-    var password = hashed(data.password, result[0].salt);
-    if(password == result[0].hash) {
-      req.session.userId = result.insertId;
-    }else {
-      res.render('fail', {err: "メールアドレスまたはパスワードが間違っています"});
-    }
+  try {
+    if(req.session.userId) throw "既にログイン済みです";
+    var data = req.body;
+    connection.query(
+      "SELECT `id`, `salt`, `hash` FROM `users` WHERE `mail` = ?",
+      [data.email], function(err, result) {
+        if(err) throw "データベースエラー";
+        if(!result[0] || hashed(data.password, result[0].salt) != result[0].hash) {
+          throw "メールアドレスまたはパスワードが間違っています"
+        }
+        req.session.userId = result[0].id;
+      }
+    );
+  }catch(err) {
+    res.render('topPage', {err: err});
   }
 });
 

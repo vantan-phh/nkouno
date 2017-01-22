@@ -5,4 +5,7 @@ block head
   script(src="javascripts/loginScreen.js")
   title あああ
 block body
+  - err = err
+  - console.log(err)
   div.body
+    h3 #{err}
