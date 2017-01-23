@@ -1,22 +1,26 @@
+- login = login
 header
   div.headerLeft
     h1 高槻さんかわいい
-  unless login
-    div.headerRight
-        button.sign#up 新規登録
-        button.sign#in ログイン
-  else
-    p a
+  div.headerRight
+    unless login
+      button.sign.up 新規登録
+      button.sign.in ログイン
+    else
+      button.sign.out ログアウト
 
-- login = login
-unless login
-  div.modalBackground
-  div.modalWindow
+div.modalBackground
+div.modalWindow
+  div.head
+    h4.title
+    button.closeButton.close ✕
+  unless login
     form.form(method="post")
-      div.head
-        h4.title
-        button.closeButton.close ✕
       div.content
       div.foot
         button.CompleteButton.close 閉じる
         button.CompleteButton.submit(type="submit")
+  else
+    div.foot
+      button.CompleteButton.close.drop 閉じる
+      button.CompleteButton.submit.down ログアウト

@@ -1,5 +1,6 @@
 var routes = {
-  topPage: require('./topPage')
+  topPage: require("./topPage"),
+  home: require("./home")
 }
 
 module.exports = routes;

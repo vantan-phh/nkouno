@@ -2,10 +2,8 @@ extends layout
 
 block head
   link(rel="stylesheet", href="stylesheets/topPage.css")
-  script(src="javascripts/loginScreen.js")
+  script(src="javascripts/signScreen.js")
   title あああ
 block body
   - err = err
-  - console.log(err)
-  div.body
-    h3 #{err}
+  h3 #{err}

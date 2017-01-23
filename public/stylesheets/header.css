@@ -23,8 +23,8 @@ header {
   outline: none;
   margin-right: 10px;
   margin-top: 25px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: #3ADF00;
   border-radius: 3px;
 }
@@ -129,6 +129,19 @@ header {
   background-color: #919191;
 }
 
+.CompleteButton.submit.down {
+  width: 120px;
+}
+
+.CompleteButton.submit.down:hover {
+  color: #FAFAFA;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #FF5454;
+}
+
+
+
 .description {
   float: left;
   margin-left: 30px;
@@ -144,4 +157,8 @@ header {
   height: 20px;
   margin: 10px 0px 10px 30px;
   box-shadow: inset 0px 1px 1px -100px rgba(0,0,0,0.2);
+}
+
+.down {
+
 }
