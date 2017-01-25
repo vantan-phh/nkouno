@@ -1,4 +1,4 @@
-window.onload = function() {
+ window.addEventListener("load", function() {
 
   var modalWindow = document.getElementsByClassName("modalWindow")[0];
   var modalBackground = document.getElementsByClassName("modalBackground")[0];
@@ -52,18 +52,23 @@ window.onload = function() {
     }
   }else {
     signOut.onclick = function() {
+      modalWindow.innerHTML = "<div class='head'><h4 class='title'></h4><button class='closeButton close'>✕</button></div><div class='foot'><button class='CompleteButton close drop'>閉じる</button><button class='CompleteButton submit down'>ログアウト</button></div>"
+      title = document.getElementsByClassName("title")[0];
+      submit = document.getElementsByClassName("submit")[0];
+      down = document.getElementsByClassName("down")[0];
+      close = document.getElementsByClassName("close");
       title.innerText = "確認";
       submit.innerText = "ログアウト";
       modalWindow.style.height = "150px";
+      close[0].onclick = close[1].onclick = formClose;
+      down.onclick = function() {
+        location.href = "/signout"
+      }
       formOpen();
-    }
-
-    down.onclick = function() {
-      location.href = "/signout"
     }
   }
 
-  function formOpen() {
+  formOpen = function() {
     if(!clickFlag) {
       clickFlag = true;
       modalBackground.style.display = "inline";
@@ -89,8 +94,7 @@ window.onload = function() {
     }
   }
 
-  modalBackground.onclick = close[0].onclick = close[1].onclick = formClose;
-  function formClose() {
+  formClose = function() {
     var opacity = 1;
     var backOpacity = 0.4;
     var backComplete = true;
@@ -113,4 +117,6 @@ window.onload = function() {
       }
     }, 1)
   }
-}
+
+  modalBackground.onclick = formClose;
+});

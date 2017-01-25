@@ -1,4 +1,51 @@
 .graph {
-  height: 400px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
+  -webkit-user-select: none;
+  float: right;
+}
+
+.gameManagement {
+  float: left;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.gameManagement p {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.game {
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.list {
+  width: 350px;
+  height: 350px;
+  overflow: scroll;
+}
+
+.body {
+  min-width: 1000px;
+}
+
+.button {
+  cursor: pointer;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-user-select: none;
+  transition: 0.1s;
+}
+
+.insert:hover {
+  background-color: #3ADF00;
+  color: #FAFAFA;
+  font-weight: bold;
+}
+
+.delete:hover {
+  background-color: #FF5454;
+  color: #FAFAFA;
+  font-weight: bold;
 }

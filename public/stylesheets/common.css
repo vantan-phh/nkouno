@@ -4,5 +4,12 @@ body {
 
 .body {
   background-color: #FAFAFA;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   min-height: calc(100vh - 80px);
+  min-width: 610px;
+}
+
+.content {
+  max-width: 1000px;
+  margin: auto;
 }

@@ -2,9 +2,21 @@ extends layout
 
 block head
   link(rel="stylesheet", href="stylesheets/home.css")
-  script(src="javascripts/graph.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
   script(src="javascripts/signScreen.js")
-  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js")
+  script(src="javascripts/listOperation.js")
+  script(src="javascripts/graphDraw.js")
   title あああ
 block body
+  if data
+    - update(data);
+  if error
+    h3 #{error}
+  div.gameManagement
+    div.game.list
+    div.game.insert.button
+      p ➕ 追加
+    div.game.delete.button
+      p ➖ 削除
   canvas.graph
+  script(src="javascripts/graph.js")

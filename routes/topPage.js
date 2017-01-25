@@ -14,14 +14,15 @@ router.post("/signup", function(req, res) {
   var data = req.body;
   var salt = createSalt();
   connection.query(
-    "INSERT INTO `users`(`name`, `mail`, `salt`, `hash`) VALUES(?, ?, ?, ?)",
-    [data.userName, data.email, salt, hashed(data.password, salt)],
+    "INSERT INTO `users`(`name`, `mail`, `salt`, `hash`, `gacha`) VALUES(?, ?, ?, ?)",
+    [data.userName, data.email, salt, hashed(data.password, salt), {}],
     function(err, result) {
       if(err) {
         if(err.toString().match(/Duplicate/)) {
           error("既に登録済みです", res);
           return;
         }else {
+          console.error(err);
           error("データベースエラー", res);
           return;
         }
