@@ -5,7 +5,10 @@ var createSalt = require("../other/createSalt.js");
 var connection = require("../other/connectMysql.js");
 
 router.get("/", function(req, res) {
-  if(req.session.userId) res.redirect("/home");
+  if(req.session.userId) {
+    res.redirect("/home");
+    return;
+  }
   res.render("topPage");
 });
 
