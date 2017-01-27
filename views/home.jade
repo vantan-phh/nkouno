@@ -10,8 +10,6 @@ block head
   script(src="/socket.io/socket.io.js")
   title あああ
 block body
-  if data
-    - update(data);
   if error
     h3 #{error}
   div.gameManagement
