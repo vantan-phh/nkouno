@@ -13,18 +13,18 @@ var app = express();
 app.set("views", __dirname + "/views");
 app.set("view engine", "jade");
 
-var sessionStore = new MySQLStore({
+var option = {
   host: "localhost",
 	port: 3306,
 	user: "root",
 	database: "nkou"
-});
+};
 
 app.use(session({
   secret: "keyboard cat",
   resave: false,
   saveUninitialized: false,
-  store: sessionStore,
+  store: new MySQLStore(option),
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 30
   }
