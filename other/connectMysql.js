@@ -8,7 +8,4 @@ var connection = mysql.createPool({
   database : process.env.MYSQL_NKOU_DATABACE
 });
 
-connection.connect();
-
-
 module.exports = connection;
