@@ -13,12 +13,16 @@ router.get("/", function(req, res) {
 });
 
 router.post("/signup", function(req, res) {
+
   if(req.session.userId) res.render("/", {err: "既にログイン済みです"});
+
   var data = req.body;
   var salt = createSalt();
-  var query = "INSERT INTO `users`(`name`, `mail`, `salt`, `hash`, `gacha`) VALUES(?, ?, ?, ?, ?);";
-  connection.query(query, [data.userName, data.email, salt, hashed(data.password, salt), {}],
+  var query = "INSERT INTO `users`(`name`, `mail`, `salt`, `hash`, `gacha`) VALUES(?, ?, ?, ?, ?)";
+
+  connection.query(query, [data.userName, data.email, salt, hashed(data.password, salt), "{}"],
   function(err, result) {
+
     if(err) {
       if(err.toString().match(/Duplicate/)) {
         error("既に登録済みです", res);
@@ -37,8 +41,10 @@ router.post("/signup", function(req, res) {
 
 router.post("/signin", function(req, res) {
   if(req.session.userId) throw "既にログイン済みです";
+
   var data = req.body;
-  var query = "SELECT `id`, `salt`, `hash` FROM `users` WHERE `mail` = ?"
+  var query = "SELECT `id`, `salt`, `hash` FROM `users` WHERE `mail` = ?";
+
   connection.query(query, [data.email], function(err, result) {
     if(err) {
       console.error(err);
@@ -51,8 +57,7 @@ router.post("/signin", function(req, res) {
     }
     req.session.userId = result[0].id;
     res.redirect("/home");
-  }
-);
+  });
 });
 
 router.get("/signout", function(req, res) {

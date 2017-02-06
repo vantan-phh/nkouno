@@ -14,10 +14,10 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "jade");
 
 var option = {
-  host: "localhost",
-	port: 3306,
-	user: "root",
-	database: "nkou"
+  host : process.env.MYSQL_NKOU_HOST,
+  user : process.env.MYSQL_NKOU_USER,
+  password : process.env.MYSQL_NKOU_PASSWORD,
+  database : process.env.MYSQL_NKOU_DATABACE
 };
 
 app.use(session({
