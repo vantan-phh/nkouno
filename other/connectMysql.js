@@ -1,6 +1,6 @@
 var mysql = require("mysql2");
 
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
   host : process.env.MYSQL_NKOU_HOST,
   user : process.env.MYSQL_NKOU_USER,
   password : process.env.MYSQL_NKOU_PASSWORD,
@@ -9,8 +9,5 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.on('error', function(err) {
-  connection.connect();
-});
 
 module.exports = connection;
