@@ -16,7 +16,7 @@ router.post("/signup", function(req, res) {
   if(req.session.userId) res.render("/", {err: "既にログイン済みです"});
   var data = req.body;
   var salt = createSalt();
-  var query = "INSERT INTO `users`(`name`, `mail`, `salt`, `hash`, `gacha`) VALUES(?, ?, ?, ?)";
+  var query = "INSERT INTO `users`(`name`, `mail`, `salt`, `hash`, `gacha`) VALUES(?, ?, ?, ?, ?)";
   connection.query(query, [data.userName, data.email, salt, hashed(data.password, salt), {}],
   function(err, result) {
     if(err) {
