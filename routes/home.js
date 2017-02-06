@@ -10,6 +10,7 @@ var data = {};
 var query = "SELECT `name`, `data` FROM `gameList`";
 
 connection.query(query, function(err, result) {
+  if(err) console.error(err);
   result.forEach(function(val) {
     val.data =  JSON.parse(val.data);
     data[val.name] = val;
