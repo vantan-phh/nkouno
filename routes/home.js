@@ -11,6 +11,7 @@ var query = "SELECT `name`, `data` FROM `gameList`";
 
 connection.query(query, function(err, result) {
   result.forEach(function(val) {
+    val.data =  JSON.parse(val.data);
     data[val.name] = val;
   });
 })
@@ -37,8 +38,9 @@ function startSocket() {
         console.error(err);
       }
       result = JSON.parse(result[0].data);
-      query = "SELECT `gacha` FROM `users` WHERE `id` = ? LIMIT 1"
       socket.userId = result.userId;
+
+      query = "SELECT `gacha` FROM `users` WHERE `id` = ? LIMIT 1";
 
       connection.query(query, [result.userId], function(err, result) {
         if(err) {
@@ -50,24 +52,21 @@ function startSocket() {
           allData: data
         };
 
+        socket.userData = result[0].gacha;
+
         socket.emit("firstData", emitData);
       });
     });
 
 
-    socket.on("dataUpdate", function(data) {
-
-
+    socket.on("update", function(data) {
+      console.log(data);
     });
 
     socket.on("error", function(err) {
       console.error(err)
     });
   });
-}
-
-function dataUpdate() {
-
 }
 
 function update() {

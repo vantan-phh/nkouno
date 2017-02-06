@@ -1,22 +1,33 @@
 extends layout
 
 block head
+  title あああ
   link(rel="stylesheet", href="stylesheets/home.css")
-  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
   script(src="javascripts/signScreen.js")
   script(src="javascripts/listOperation.js")
   script(src="javascripts/graph.js")
   script(src="javascripts/socket.js")
+  script(src="javascripts/listIo.js")
   script(src="/socket.io/socket.io.js")
-  title あああ
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
 block body
   if error
     h3 #{error}
   div.gameManagement
-    div.game.list
-    div.game.insert.button
+    div.list
+    div.insert.button
       p ➕ 追加
-    div.game.delete.button
+    div.delete.button
       p ➖ 削除
-  canvas.graph
-  script(src="javascripts/graph.js")
+  div.main
+    canvas.graph
+    button.option(value="real") リアルタイム
+    button.option(value="hour") 10分毎
+    button.option(value="day") 1時間毎
+    button.option(value="week") 1週間
+    button.option(value="month") 1ヶ月
+    button.option(value="year") 1年
+    button.option(value="total") 全期間
+    div.emit
+    button.emits(type="button") 送信
+    script(src="javascripts/graph.js")

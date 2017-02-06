@@ -1,8 +1,7 @@
 .graph {
-  height: 600px;
-  width: 600px;
-  -webkit-user-select: none;
-  float: right;
+  max-height: 450px;
+  max-width: 580px;
+  user-select: none;
 }
 
 .gameManagement {
@@ -16,14 +15,14 @@
   padding-bottom: 10px;
 }
 
-.game {
+.gameManagement .button {
   font-weight: bold;
   padding-left: 10px;
 }
 
 .list {
   width: 350px;
-  height: 350px;
+  height: 400px;
   overflow: scroll;
 }
 
@@ -48,4 +47,38 @@
   background-color: #FF5454;
   color: #FAFAFA;
   font-weight: bold;
+}
+
+.game {
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.1s;
+}
+
+.game:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.game h4 {
+  margin: 0;
+  padding: 10px 0px 10px 10px;
+  white-space: nowrap;
+}
+
+.option {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.emits {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  float: right;
+  width: 600px;
 }
